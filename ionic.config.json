@@ -1,5 +1,7 @@
 {
   "name": "easy-parking",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
