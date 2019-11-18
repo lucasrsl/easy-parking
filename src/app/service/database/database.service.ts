@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { HttpClient } from '@angular/common/http';
-import { userInfo } from 'os';
 
 export interface User {
   id: number,
@@ -44,16 +43,16 @@ export class DatabaseService {
   scales = new BehaviorSubject([]);
  
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
-    this.plt.ready().then(() => {
-      this.sqlite.create({
-        name: 'parking.db',
-        location: 'default'
-      })
-      .then((db: SQLiteObject) => {
-          this.database = db;
-          this.seedDatabase();
-      });
-    });
+    // this.plt.ready().then(() => {
+    //   this.sqlite.create({
+    //     name: 'parking.db',
+    //     location: 'default'
+    //   })
+    //   .then((db: SQLiteObject) => {
+    //       this.database = db;
+    //       this.seedDatabase();
+    //   });
+    // });
   }
  
   seedDatabase() {
@@ -201,7 +200,7 @@ export class DatabaseService {
  
   getUser(usuario, senha): Promise<User> {
     let data = [usuario, senha];
-    return this.database.executeSql('SELECT * FROM users WHERE usuario = ?, senha = ?', data).then(data => { 
+    return this.database.executeSql('SELECT * FROM users WHERE usuario = ? AND senha = ?', data).then(data => { 
       return {
         id: data.rows.item(0).id,
         usuario: data.rows.item(0).usuario, 

@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>listar</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Carros</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row color="primary" class="ion-justify-content-center">
+          <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+            <div class="ion-text-center">
+              <h3>Carros estacionados</h3>
+            </div>
+            <div class="ion-padding">
+              <ion-card (click)="selecionaCarro(carro)" *ngFor="let carro of carros">
+                <ion-card-header>{{carro.placa}}</ion-card-header>
+                <ion-card-subtitle class="ion-padding">{{carro.marca}} - {{carro.modelo}} - {{carro.cor}}</ion-card-subtitle>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
 </ion-content>

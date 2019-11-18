@@ -20,11 +20,6 @@ export class AppComponent {
       title: 'Registrar Entrada',
       url: '/entrada',
       icon: 'add'
-    },
-    {
-      title: 'Registrar Saida',
-      url: '/saida',
-      icon: 'remove'
     }
   ];
 
