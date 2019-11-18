@@ -15,10 +15,13 @@
               <h3>Carros estacionados</h3>
             </div>
             <div class="ion-padding">
-              <ion-card (click)="selecionaCarro(carro)" *ngFor="let carro of carros">
-                <ion-card-header>{{carro.placa}}</ion-card-header>
-                <ion-card-subtitle class="ion-padding">{{carro.marca}} - {{carro.modelo}} - {{carro.cor}}</ion-card-subtitle>
-              </ion-card>
+              <div *ngFor="let carro of carros">
+                <ion-card (click)="selecionaCarro(carro)" *ngIf="carro.is_active === 1">
+                  <ion-card-header>{{carro.placa}}</ion-card-header>
+                  <ion-card-subtitle class="ion-padding">{{carro.marca}} {{carro.modelo}} - {{carro.cor}}</ion-card-subtitle>
+                  <ion-card-content>Entrada: {{carro.entrada}}</ion-card-content>
+                </ion-card>
+              </div>
             </div>
           </ion-col>
         </ion-row>

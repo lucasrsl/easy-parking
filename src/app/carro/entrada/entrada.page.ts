@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { CarroService } from 'src/app/service/carro/carro.service';
 
 @Component({
@@ -10,40 +10,43 @@ import { CarroService } from 'src/app/service/carro/carro.service';
 })
 export class EntradaPage implements OnInit {
 
-  constructor(private router: Router, private alertCtrl: AlertController, private carroService: CarroService) { }
+  constructor(private router: Router, private carroService: CarroService, private toastCtrl: ToastController) { }
 
   ngOnInit() {
   }
 
   registraCarro(form) {
+    let data = new Date;
+    let dataString = data.toLocaleString();
+
     let carro = {
       placa: form.form.value.placa,
       marca: form.form.value.marca,
       modelo: form.form.value.modelo,
       cor: form.form.value.cor,
+      entrada: dataString,
+      saida: '',
       is_active: 1
     }
     
     this.carroService.registraEntrada(carro).then(res => {
       console.log('Sucesso', res);
       
-      this.showAlert('Sucesso', 'Carro registrado com sucesso.');
-      this.router.navigateByUrl('home');
+      this.presentToast(`Carro ${carro.placa} registrado com sucesso.`);
+      this.router.navigateByUrl('listar');
     }).catch(er => {
       console.log('Erro', er);
       
-      this.showAlert('Erro', 'Erro ao registrar carro.');
+      this.presentToast('Erro ao registrar carro.');
     });
   }
 
-  async showAlert(titulo, mensagem) {
-    const alert = await this.alertCtrl.create({
-      header: titulo,
-      message: mensagem,
-      buttons: ['OK']
+  async presentToast(message) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2000
     });
-
-    await alert.present();
+    toast.present();
   }
 
 }

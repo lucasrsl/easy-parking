@@ -19,6 +19,8 @@ export interface Car {
   marca: string,
   modelo: string,
   cor: string,
+  entrada: string,
+  saida: string,
   is_active: number
 }
 
@@ -93,6 +95,8 @@ export class DatabaseService {
             marca: data.rows.item(i).marca, 
             modelo: data.rows.item(i).modelo,
             cor: data.rows.item(i).cor,
+            entrada: data.rows.item(i).entrada,
+            saida: data.rows.item(i).saida,
             is_active: data.rows.item(i).is_active
            });
         }
@@ -101,9 +105,9 @@ export class DatabaseService {
     });
   }
  
-  addCar(placa, marca, modelo, cor, is_active) {
-    let data = [placa, marca, modelo, cor, is_active];
-    return this.database.executeSql('INSERT INTO cars (placa, marca, modelo, cor, is_active) VALUES (?, ?, ?, ?, ?)', data).then(_ => {
+  addCar(placa, marca, modelo, cor, entrada, saida, is_active) {
+    let data = [placa, marca, modelo, cor, entrada, saida, is_active];
+    return this.database.executeSql('INSERT INTO cars (placa, marca, modelo, cor, entrada, saida, is_active) VALUES (?, ?, ?, ?, ?)', data).then(_ => {
       this.loadCars();
     });
   }
@@ -116,6 +120,8 @@ export class DatabaseService {
         marca: data.rows.item(0).marca, 
         modelo: data.rows.item(0).modelo,
         cor: data.rows.item(0).cor,
+        entrada: data.rows.item(0).entrada,
+        saida: data.rows.item(0).saida,
         is_active: data.rows.item(0).is_active
       }
     });
@@ -128,8 +134,8 @@ export class DatabaseService {
   }
  
   updateCar(car: Car) {
-    let data = [car.placa, car.marca, car.modelo, car.cor, car.is_active];
-    return this.database.executeSql(`UPDATE cars SET placa = ?, marca = ?, modelo = ?, cor = ?, is_active = ? WHERE id = ${car.id}`, data).then(_ => {
+    let data = [car.placa, car.marca, car.modelo, car.cor, car.entrada, car.saida, car.is_active];
+    return this.database.executeSql(`UPDATE cars SET placa = ?, marca = ?, modelo = ?, cor = ?, entrada = ?, saida = ?, is_active = ? WHERE id = ${car.id}`, data).then(_ => {
       this.loadCars();
     });
   }

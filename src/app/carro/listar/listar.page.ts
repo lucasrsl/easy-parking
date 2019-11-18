@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/service/database/database.service';
 import { CarroService } from 'src/app/service/carro/carro.service';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 
 export interface Car {
   id: number,
@@ -9,6 +9,8 @@ export interface Car {
   marca: string,
   modelo: string,
   cor: string,
+  entrada: string,
+  saida: string,
   is_active: number
 }
 
@@ -21,7 +23,7 @@ export class ListarPage implements OnInit {
   carros: Car[] = [];
  
   constructor(private db: DatabaseService, private carroService: CarroService, private actionSheetCtrl: ActionSheetController,
-    private alertCtrl: AlertController) { }
+    private toastCtrl: ToastController) { }
  
   ngOnInit() {
     this.carroService.listarCarros().then((carros: Car[]) => {
@@ -39,7 +41,7 @@ export class ListarPage implements OnInit {
         icon: 'remove',
         handler: () => {
           this.carroService.registrarSaida(carro).then(_ => {
-            this.showAlert('Sucesso', 'Saída registrada com sucesso.')
+            this.presentToast(`Saída do veículo ${carro.placa} registrada com sucesso.`)
           });
         }
       }, {
@@ -52,13 +54,11 @@ export class ListarPage implements OnInit {
     await actionSheet.present();
   }
 
-  async showAlert(titulo, mensagem) {
-    const alert = await this.alertCtrl.create({
-      header: titulo,
-      message: mensagem,
-      buttons: ['OK']
+  async presentToast(message) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2000
     });
-
-    await alert.present();
+    toast.present();
   }
 }
