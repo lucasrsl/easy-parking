@@ -10,16 +10,24 @@
 <ion-content>
     <ion-grid>
         <ion-row color="primary" class="ion-justify-content-center">
-          <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+          <ion-col class="ion-align-self-center" size-md="6" size-lg="12" size-xs="12">
             <div class="ion-text-center">
               <h3>Carros estacionados</h3>
             </div>
             <div class="ion-padding">
               <div *ngFor="let carro of carros">
                 <ion-card (click)="selecionaCarro(carro)" *ngIf="carro.is_active === 1">
-                  <ion-card-header>{{carro.placa}}</ion-card-header>
-                  <ion-card-subtitle class="ion-padding">{{carro.marca}} {{carro.modelo}} - {{carro.cor}}</ion-card-subtitle>
-                  <ion-card-content>Entrada: {{carro.entrada}}</ion-card-content>
+                  <ion-card-header>
+                    <ion-card-subtitle>
+                      {{carro.marca}} {{carro.modelo}} - {{carro.cor}}
+                    </ion-card-subtitle>
+                    <ion-card-title>
+                      {{carro.placa}}
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    Entrada: {{carro.entrada}}
+                  </ion-card-content>
                 </ion-card>
               </div>
             </div>
