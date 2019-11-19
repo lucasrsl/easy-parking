@@ -17,9 +17,19 @@ export class AppComponent {
       icon: 'car'
     },
     {
-      title: 'Registrar Entrada',
-      url: '/entrada',
-      icon: 'add'
+      title: 'Valor Hora',
+      url: '/valor',
+      icon: 'cash'
+    },
+    {
+      title: 'Relatório',
+      url: '/report',
+      icon: 'list'
+    },
+    {
+      title: 'Escala',
+      url: '/escala',
+      icon: 'clock'
     }
   ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/service/database/database.service';
 import { CarroService } from 'src/app/service/carro/carro.service';
-import { ActionSheetController, ToastController } from '@ionic/angular';
+import { ActionSheetController, ToastController, NavController } from '@ionic/angular';
 
 export interface Car {
   id: number,
@@ -23,13 +23,11 @@ export class ListarPage implements OnInit {
   carros: Car[] = [];
  
   constructor(private db: DatabaseService, private carroService: CarroService, private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController) { }
+    private toastCtrl: ToastController, private navCtrl: NavController) { }
  
   ngOnInit() {
     this.carroService.listarCarros().then((carros: Car[]) => {
-      this.carros = carros;
-      // console.log(res);
-      
+      this.carros = carros;      
     });
   }
 
@@ -60,5 +58,9 @@ export class ListarPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  adicionaCarro() {
+    this.navCtrl.navigateForward('/entrada');
   }
 }

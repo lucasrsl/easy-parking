@@ -8,32 +8,24 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },
-  {
     path: 'entrada',
-    loadChildren: () => import('./carro/entrada/entrada.module').then( m => m.EntradaPageModule)
+    loadChildren: () => import('./pages/carro/entrada/entrada.module').then( m => m.EntradaPageModule)
   },
   {
     path: 'valor',
-    loadChildren: () => import('./valor/valor.module').then( m => m.ValorPageModule)
+    loadChildren: () => import('./pages/valor/valor.module').then( m => m.ValorPageModule)
   },
   {
     path: 'escala',
-    loadChildren: () => import('./escala/escala.module').then( m => m.EscalaPageModule)
+    loadChildren: () => import('./pages/escala/escala.module').then( m => m.EscalaPageModule)
   },
   {
     path: 'report',
-    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
+    loadChildren: () => import('./pages/report/report.module').then( m => m.ReportPageModule)
   },
   {
     path: 'listar',
-    loadChildren: () => import('./carro/listar/listar.module').then( m => m.ListarPageModule)
+    loadChildren: () => import('./pages/carro/listar/listar.module').then( m => m.ListarPageModule)
   }
 ];
 

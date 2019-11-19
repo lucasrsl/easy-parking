@@ -8,12 +8,15 @@ import { EntradaPageRoutingModule } from './entrada-routing.module';
 
 import { EntradaPage } from './entrada.page';
 
+import { BrMaskerModule } from 'br-mask';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EntradaPageRoutingModule
+    EntradaPageRoutingModule,
+    BrMaskerModule
   ],
   declarations: [EntradaPage]
 })
