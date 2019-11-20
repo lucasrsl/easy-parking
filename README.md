@@ -23,5 +23,10 @@ docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos ionic>
  ```
  docker start -a -i <id do container>
  ```
+ 
+ Roda a aplicação no endereço acessível pelo localhost da máquina física
+ ```
+ ionic serve --address 0.0.0.0 -p 3000
+ ```
 
 ###### Atualmente em fase de desenvolvimento
