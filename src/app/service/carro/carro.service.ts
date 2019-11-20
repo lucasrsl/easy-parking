@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DatabaseService } from '../database/database.service';
-import { reject } from 'q';
 
 @Injectable({
   providedIn: 'root'
