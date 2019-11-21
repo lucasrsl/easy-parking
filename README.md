@@ -9,14 +9,14 @@ Desenvolvido utilizando as seguintes tecnologias:
 
 ### Comandos Docker 
 
-Cria e roda container utilizando a imagem informada 
+Cria e roda container utilizando a imagem ionic 
 ```
-docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos ionic>:/var/projetos" --name <nome para o container> beevelop/ionic
+docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos ionic>:/var/projetos" --name <nome para o container> beevelop/ionic bash
  ```
  
  Lista todos os containers
  ```
- docker ps 
+ docker ps -la
  ```
  
  Starta o container com terminal interativo
