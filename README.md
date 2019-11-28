@@ -11,12 +11,12 @@ Desenvolvido utilizando as seguintes tecnologias:
 
 Cria e roda container utilizando a imagem ionic 
 ```
-sudo docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos ionic>:/var/projetos" --name <nome para o container> beevelop/ionic
+sudo docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos ionic>:/var/projetos" --name ionicLatest beevelop/ionic bash
  ```
  
  Lista todos os containers
  ```
- sudo docker ps -la
+ sudo docker ps -a
  ```
  
  Starta o container com terminal interativo
