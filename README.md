@@ -29,4 +29,7 @@ sudo docker run -it -d -p 3000:3000 -v "<path na máquina física com projetos i
  ionic serve --address 0.0.0.0 -p 3000
  ```
 
+#### Estudar
+* [Tabelas Ionic 4](https://www.youtube.com/watch?v=_ym7bKfsMSs)
+
 ###### Atualmente em fase de desenvolvimento
