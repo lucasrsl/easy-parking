@@ -1,6 +1,7 @@
 # Easy Parking
 
 Projeto de aplicação mobile para gerenciamento de um estacionamento.
+Desenvolvido para a disciplina de Engenharia de Software.
 
 Desenvolvido utilizando as seguintes tecnologias:
 - Ionic 4
