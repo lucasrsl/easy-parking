@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-escala',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscalaPage implements OnInit {
 
-  constructor() { }
+  constructor(public toastController: ToastController) {}
 
+  async presentToast(text) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
+  }
   ngOnInit() {
+    this.presentToast('Tela em desenvolvimento');
   }
 
 }

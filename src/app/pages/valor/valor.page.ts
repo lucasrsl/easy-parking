@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-valor',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValorPage implements OnInit {
 
-  constructor() { }
+  constructor(private toastController: ToastController) { }
+
+  async presentToast(text) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
+  }
 
   ngOnInit() {
+    this.presentToast('Tela em desenvolvimento');
   }
 
 }
