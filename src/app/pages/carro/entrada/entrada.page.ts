@@ -29,7 +29,9 @@ export class EntradaPage implements OnInit {
       is_active: 1
     }
     
+    debugger
     this.carroService.registraEntrada(carro).then(res => {
+      debugger
       console.log('Sucesso', res);
       
       this.presentToast(`Carro ${carro.placa} registrado com sucesso.`);

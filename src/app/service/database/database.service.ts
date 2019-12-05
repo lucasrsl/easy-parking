@@ -5,32 +5,10 @@ import { Platform } from '@ionic/angular';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { HttpClient } from '@angular/common/http';
 
-export interface User {
-  id: number,
-  usuario: string,
-  senha: string,
-  nome: string,
-  user_type: number
-}
+import { Car } from '../../../model/Car';
+import { User } from '../../../model/User';
+import { Scale } from '../../../model/Scale';
 
-export interface Car {
-  id: number,
-  placa: string,
-  marca: string,
-  modelo: string,
-  cor: string,
-  entrada: string,
-  saida: string,
-  is_active: number
-}
-
-export interface Scale {
-  id: number,
-  user_id: number,
-  dia: string,
-  entrada: string,
-  duracao: string
-}
 
 @Injectable({
   providedIn: 'root'
@@ -45,16 +23,21 @@ export class DatabaseService {
   scales = new BehaviorSubject([]);
  
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
-    // this.plt.ready().then(() => {
-    //   this.sqlite.create({
-    //     name: 'parking.db',
-    //     location: 'default'
-    //   })
-    //   .then((db: SQLiteObject) => {
-    //       this.database = db;
-    //       this.seedDatabase();
-    //   });
-    // });
+    this.plt.ready().then(() => {
+      this.sqlite.create({
+        name: 'parking.db',
+        location: 'default'
+      })
+      .then((db: SQLiteObject) => {
+        debugger
+        this.database = db;
+        this.seedDatabase();
+      }).catch(err => {
+        debugger
+        console.log(err);
+        
+      });
+    });
   }
  
   seedDatabase() {
@@ -86,6 +69,7 @@ export class DatabaseService {
   loadCars() {
     return this.database.executeSql('SELECT * FROM cars', []).then(data => {
       let cars: Car[] = [];
+      debugger
  
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
@@ -102,6 +86,9 @@ export class DatabaseService {
         }
       }
       this.cars.next(cars);
+    }).catch(err => {
+      console.log("LoadCars", err);
+      
     });
   }
  
@@ -109,6 +96,9 @@ export class DatabaseService {
     let data = [placa, marca, modelo, cor, entrada, saida, is_active];
     return this.database.executeSql('INSERT INTO cars (placa, marca, modelo, cor, entrada, saida, is_active) VALUES (?, ?, ?, ?, ?)', data).then(_ => {
       this.loadCars();
+    }).catch(err => {
+      console.log("AddCar", err);
+      
     });
   }
  
@@ -124,6 +114,27 @@ export class DatabaseService {
         saida: data.rows.item(0).saida,
         is_active: data.rows.item(0).is_active
       }
+    });
+  }
+
+  getCarByEntry(entrada) : Promise<Car[]> {
+    return this.database.executeSql('SELECT * FROM cars WHERE entrada LIKE ?', [entrada]).then(data => { 
+      let cars: Car[] = [];
+      data.rows.forEach(item => {
+        let car = {
+          id: item(0).id,
+          placa: item(0).placa, 
+          marca: item(0).marca, 
+          modelo: item(0).modelo,
+          cor: item(0).cor,
+          entrada: item(0).entrada,
+          saida: item(0).saida,
+          is_active: item(0).is_active
+        }
+        cars.push(car);
+      });
+
+      return cars;
     });
   }
  

@@ -8,6 +8,8 @@ import { ReportPageRoutingModule } from './report-routing.module';
 
 import { ReportPage } from './report.page';
 
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @NgModule({
   imports: [
     CommonModule,

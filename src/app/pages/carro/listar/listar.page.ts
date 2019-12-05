@@ -27,6 +27,7 @@ export class ListarPage implements OnInit {
  
   ngOnInit() {
     this.carroService.listarCarros().then((carros: Car[]) => {
+      debugger
       this.carros = carros;      
     });
   }
@@ -39,6 +40,7 @@ export class ListarPage implements OnInit {
         icon: 'remove',
         handler: () => {
           this.carroService.registrarSaida(carro).then(_ => {
+            debugger
             this.presentToast(`Saída do veículo ${carro.placa} registrada com sucesso.`)
           });
         }

@@ -40,11 +40,13 @@ export class CarroService {
   listarCarros() {
     return new Promise(resolve => {
       resolve(this.carros);
-    })
+    });
     // return new Promise(resolve => {
     //   this.db.getDatabaseState().subscribe(rdy => {
+    //     debugger
     //     if(rdy) {
     //       this.db.getCars().subscribe(cars => {
+    //         debugger
     //         resolve(cars);
     //       });
     //     }
@@ -56,12 +58,14 @@ export class CarroService {
     return new Promise(resolve => {
       this.carros.push(carro);
       resolve();
-    })
+    });
     // return new Promise((resolve, reject) => {
-    //   this.db.addCar(carro.placa, carro.marca, carro.modelo, carro.cor, carro.is_active)
+    //   this.db.addCar(carro.placa, carro.marca, carro.modelo,carro.cor, carro.entrada, carro.saida, carro.is_active)
     //   .then(_ => {
+    //     debugger
     //     resolve();
     //   }).catch(_ => {
+    //     debugger
     //     reject();
     //   });
     // });
@@ -76,10 +80,14 @@ export class CarroService {
       });
       resolve();
     });
+    // carro.is_active = 0;
+    // debugger
     // return new Promise((resolve, reject) => {
     //   this.db.updateCar(carro).then(_ => {
+    //     debugger
     //     resolve();
     //   }).catch(_ => {
+    //     debugger
     //     reject();
     //   });
     // });
